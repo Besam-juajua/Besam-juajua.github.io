@@ -1,0 +1,607 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hello my friend" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hello my friend" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hello my friend" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="异步、promise、async" />
+
+
+<link rel="canonical" href="http://example.com/2019/04/19/promise-async/">
+
+
+
+  <title>
+promise和async - js基础 |
+Besam's space = Hello my friend = improve together</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">promise和async
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2019-04-19 16:46:47">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2019-04-19T16:46:47+08:00">2019-04-19</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Besam's space</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="./images/nice.jpg"></li>
+          <li class="item" data-background-image="./images/sky.jpg"></li>
+          <li class="item" data-background-image="./images/funny.jpg"></li>
+          <li class="item" data-background-image="./images/blue.jpg"></li>
+          <li class="item" data-background-image="./images/healthy.jpg"></li>
+          <li class="item" data-background-image="./images/everything.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/js%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 js基础"><span itemprop="name">js基础</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/19/promise-async/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Besam">
+    <meta itemprop="description" content="improve together, 风雨的技术 & 日常记录">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hello my friend">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>一般使用嵌套回调或者链式回调，会产生以下问题</p>
+<ol>
+<li>当采用嵌套回调时，会导致层级太多，不利于维护</li>
+<li>所以我们又采用了链式回调，对嵌套回调进行拆分，拆分后的函数间耦合度很高，</li>
+<li>如果需要传递参数，函数之间的关联性会更高，而且要对参数进行校验以提高代码的健壮性</li>
+<li>如果将我们自己的回调函数传递给第三方插件或者库，就要考虑一些不可控因素<ul>
+<li>调用回调过早</li>
+<li>调用回调过晚（或不被调用）</li>
+<li>调用回调次数过多或者过少</li>
+</ul>
+</li>
+</ol>
+<p>promise 的存在就是为了解决以上问题<br>虽然我们日常写回调函数不会有这么严格的要求，但是如果不这样去写回调函数，就会存在隐患，当在团队协作的时候，显得编码规范显得尤为重要</p>
+<p>本文不重点介绍如何使用 promise，重点介绍的是 promise 解决了哪些异步回调出现的问题。</p>
+<h3 id="什么是-promise"><a href="#什么是-promise" class="headerlink" title="什么是 promise"></a>什么是 promise</h3><p>我们来看一个场景，有助于我们了解 promise</p>
+<blockquote>
+<p>设想一下这个场景，我去 KFC，交给收银员 10 元，下单买一个汉堡，下单付款。到这里，我已经发出了一个请求（买汉堡），启动了一次交易。<br>但是做汉堡需要时间，我不能马上得到这个汉堡，收银员给我一个收据来代替汉堡。到这里，收据就是一个承诺(promise),保证我最后能得到汉堡。<br>所以我需要好好的保留的这个收据，对我来说，收据就是汉堡，虽然这张收据不能吃，我需要等待汉堡做好，等待收银员叫号通知我<br>等待的过程中，我可以做些别的事情<br>收银员终于叫到了我的号，我用收据换来了汉堡<br>当然还有一种情况，当我去柜台取汉堡的时候，收银员告诉我汉堡卖光了，做汉堡的师傅受伤了等等原因，导致了我无法得到这个汉堡<br>虽然我有收据（承诺），但是可能得到汉堡（成功），可能得不到汉堡（失败）<br>我由等待汉堡变成了等到或者等不到，这个过程不可逆，</p>
+</blockquote>
+<p>上面很形象的介绍了 promise，上面的等待汉堡和得到汉堡，汉堡卖光了，得不到汉堡，分别对应 promise 的三种状态<br>三种状态：pending（进行中）、fulfilled（已成功）和 rejected（已失败）(一旦状态改变，就不会再变)</p>
+<h3 id="回调函数调用过早"><a href="#回调函数调用过早" class="headerlink" title="回调函数调用过早"></a>回调函数调用过早</h3><p>调用过早就是将异步函数作为同步处理了，<br>我们之前说过，javascript 以单线程同步的方式执行主线程，遇到异步会将异步函数放入到任务队列中，<br>当主线程执行完毕，会循环执行任务队列中的函数，也就是事件循环，直到任务队列为空。</p>
+<h4 id="事件循环和任务队列"><a href="#事件循环和任务队列" class="headerlink" title="事件循环和任务队列"></a>事件循环和任务队列</h4><p>事件循环就像是一个游乐场，玩过一个游戏后，你需要重新排到队尾才能再玩一次<br>任务队列就是，在你玩过一个游戏后，可以插队接着玩</p>
+<p>我们看一个栗子 🌰</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    const promise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      resolve(&quot;成功啦&quot;)</span><br><span class="line">    &#125;);</span><br><span class="line">    promise.then(res =&gt; &#123;</span><br><span class="line">      console.log(res);</span><br><span class="line">      console.log(&quot;我是异步执行的&quot;);</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(&#x27;我在主线程&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>看下输出，重点看输出顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//我在主线程</span><br><span class="line">//成功啦</span><br><span class="line">//我是异步执行的</span><br></pre></td></tr></table></figure>
+
+<p>直接手动是 promise 的状态切为成功状态，console.log(“我是异步执行的”);这段代码也是异步执行的<br>提供给 then()的回调永远都是异步执行的，所以 promise 中不会出现回调函数过早执行的情况</p>
+<h3 id="回调函数调用过晚或不被调用"><a href="#回调函数调用过晚或不被调用" class="headerlink" title="回调函数调用过晚或不被调用"></a>回调函数调用过晚或不被调用</h3><h4 id="回调函数调用过晚"><a href="#回调函数调用过晚" class="headerlink" title="回调函数调用过晚"></a>回调函数调用过晚</h4><p>回调函数调用过晚的处理原理和调用过早很类似，<br>在 promise 的 then()中存放着异步函数，所有的异步都存在于 js 的任务队列中，当 js 的主线程执行完毕后，会依次执行任务队列中的内容，不会出现执行过晚的情况</p>
+<h4 id="回调函数不被调用"><a href="#回调函数不被调用" class="headerlink" title="回调函数不被调用"></a>回调函数不被调用</h4><p>我们用栗子 🌰 说话</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    const promise = new Promise((resolve, reject) =&gt; resolve(&#x27;成功啦&#x27;))</span><br><span class="line">    promise.then(s =&gt; console.log(s));</span><br><span class="line">    console.log(&#x27;我在主线程&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>成功状态的输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//我在主线程</span><br><span class="line">//成功啦</span><br></pre></td></tr></table></figure>
+
+<p>成功状态下回调被调用<br>继续看一下失败的回调</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    const promise = new Promise((resolve, reject) =&gt; reject(&#x27;失败啦&#x27;))</span><br><span class="line">   promise.then(null, s =&gt; console.log(s));</span><br><span class="line">   console.log(&#x27;我在主线程&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>失败状态的输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//我在主线程</span><br><span class="line">//失败啦</span><br></pre></td></tr></table></figure>
+
+<p>失败状态下回调被调用<br>所以说，不管是失败还是成功，回调函数都会被调用</p>
+<h3 id="回调函数调用次数过多或者过少"><a href="#回调函数调用次数过多或者过少" class="headerlink" title="回调函数调用次数过多或者过少"></a>回调函数调用次数过多或者过少</h3><h4 id="调用次数过多"><a href="#调用次数过多" class="headerlink" title="调用次数过多"></a>调用次数过多</h4><p>我们之前说了 promise 有三种状态<br>pending（进行中）、fulfilled（已成功）和 rejected（已失败）状态一旦状态改变，就不会再变，<br>一个栗子 🌰</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    const promise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      reject(&#x27;失败啦&#x27;)</span><br><span class="line">      resolve(&#x27;成功啦&#x27;)</span><br><span class="line">    &#125;);</span><br><span class="line">    promise.then(res =&gt; &#123;</span><br><span class="line">      console.log(`我是异步执行的成功:$&#123;res&#125;`);</span><br><span class="line">    &#125;,err=&gt;&#123;</span><br><span class="line">      console.log(`我是异步执行的失败:$&#123;err&#125;`);</span><br><span class="line">    &#125;).catch(err =&gt; &#123;</span><br><span class="line">      console.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(&#x27;我在主线程&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//我在主线程</span><br><span class="line">//我是异步执行的失败:失败啦</span><br></pre></td></tr></table></figure>
+
+<p>当状态变为失败时，就不会再变为成功，成功的函数也不会执行，反之亦然</p>
+<h4 id="调用次数过少"><a href="#调用次数过少" class="headerlink" title="调用次数过少"></a>调用次数过少</h4><p>回调函数正常是调用一次，过少&#x3D;&gt;0 次&#x3D;&gt;回调函数不被调用，上面刚刚讨论过</p>
+<h3 id="promise-局限"><a href="#promise-局限" class="headerlink" title="promise 局限"></a>promise 局限</h3><h4 id="错误被吃掉"><a href="#错误被吃掉" class="headerlink" title="错误被吃掉"></a>错误被吃掉</h4><p>首先我们要理解，什么是错误被吃掉，是指错误信息不被打印吗？<br>并不是，举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">throw new Error(&#x27;error&#x27;);</span><br><span class="line">console.log(&#x27;不会执行这里&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，因为 throw error 的缘故，代码被阻断执行，并不会打印 “不会执行这里”，<br>再举个栗子 🌰：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(null);</span><br><span class="line">console.log(&#x27;不会执行这里&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码依然会被阻断执行，这是因为如果通过无效的方式使用 Promise，并且出现了一个错误阻碍了正常 Promise 的构造，结果会得到一个立刻抛出的异常，而不是一个被拒绝的 Promise。<br>然而再举个栗子 🌰：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let promise = new Promise(() =&gt; &#123;</span><br><span class="line">    throw new Error(&#x27;error&#x27;)</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&#x27;不会执行这里&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码这次会正常的打印 “不会执行这里”，说明 Promise 内部的错误不会影响到 Promise 外部的代码，而这种情况我们就通常称为 “吃掉错误”。<br>其实这并不是 Promise 独有的局限性，try..catch 也是这样，同样会捕获一个异常并简单的吃掉错误。<br>而正是因为错误被吃掉，Promise 链中的错误很容易被忽略掉，这也是为什么会一般推荐在 Promise 链的最后添加一个 catch 函数，因为对于一个没有错误处理函数的 Promise 链，任何错误都会在链中被传播下去，直到你注册了错误处理函数。</p>
+<h4 id="单一值"><a href="#单一值" class="headerlink" title="单一值"></a>单一值</h4><p>Promise 只能有一个完成值或一个拒绝原因，然而在真实使用的时候，往往需要传递多个值，一般做法都是构造一个对象或数组，然后再传递，then 中获得这个值后，又会进行取值赋值的操作，每次封装和解封都无疑让代码变得笨重。<br>说真的，并没有什么好的方法，建议是使用 ES6 的解构赋值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([Promise.resolve(1), Promise.resolve(2)])</span><br><span class="line">.then(([x, y]) =&gt; &#123;</span><br><span class="line">    console.log(x, y);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="无法取消"><a href="#无法取消" class="headerlink" title="无法取消"></a>无法取消</h4><p>Promise 一旦新建它就会立即执行，无法中途取消。</p>
+<h4 id="无法得知-pending-状态"><a href="#无法得知-pending-状态" class="headerlink" title="无法得知 pending 状态"></a>无法得知 pending 状态</h4><p>当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<p>关于 Generator，阮一峰对此介绍的很详细，如果想深入研究可以翻阅查看，我们不在这里做详细的研究，简单了解</p>
+<h3 id="一个不正经的函数"><a href="#一个不正经的函数" class="headerlink" title="一个不正经的函数"></a>一个不正经的函数</h3><p>Generator 写法很像一个函数，但是区别于普通函数，一个栗子</p>
+<pre class="wx-pre"><p class=""><span class=""><span class="">function</span> <span class="">doSth1</span>() </span>{</p><p class="">  <span class="">return</span> <span class="">'这是普通函数'</span></p><p class="">}</p><p class=""><span class="">const</span> it1 = doSth1()</p><p class=""><br/></p><p class=""><span class="">console</span>.log(it1); <span class="">//=>这是普通函数</span></p><p class=""><br/></p><p class=""><span class="">//一个生成器doSth</span></p><p class=""><span class=""><span class="">function</span>* <span class="">doSth</span>() </span>{</p><p class="">  <span class="">yield</span> <span class="">'郭靖抓鸡'</span>;</p><p class="">  <span class="">yield</span> <span class="">'郭靖杀鸡'</span>;</p><p class="">  <span class="">yield</span> <span class="">'黄蓉拔毛'</span>;</p><p class="">  <span class="">yield</span> <span class="">'黄蓉炖鸡'</span>;</p><p class="">  <span class="">yield</span> <span class="">'洪七公吃鸡'</span>;</p><p class="">  <span class="">return</span> <span class="">"洪七公说：这只鸡真好吃"</span></p><p class="">}</p><p class=""><span class="">// 通过一个遍历器控制这个生成器的执行</span></p><p class=""><span class="">const</span> it = doSth()</p><p class=""><br/></p><p class=""><span class="">console</span>.log(it);</p></pre>
+
+<p>我们看下 it 的输出 ddq.png it 是一个迭代器，我们没有像打印普通函数那样打印出我们想要的结果</p>
+<p>普通的函数一旦执行，就不会停下来，直到执行完毕（不考虑 debugger，alert，throw err，死循环等情况）</p>
+<p>Generator 生成器，可以做到，它可以让一个函数的执行暂停</p>
+<p>Generator 生成器不会自行启动，需要使用遍历器的 next(),来控制 Generator 生成器的执行</p>
+<pre class="wx-pre"><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "郭靖抓鸡", done: false}</span></p><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "郭靖杀鸡", done: false}</span></p><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "黄蓉拔毛", done: false}</span></p><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "黄蓉炖鸡", done: false}</span></p><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "洪七公吃鸡", done: false}</span></p><p class=""><span class="">console</span>.log(it.next());<span class="">//=>{value: "洪七公说：这只鸡真好吃", done: true}</span></p></pre>
+
+<h3 id="关于函数的-return"><a href="#关于函数的-return" class="headerlink" title="关于函数的 return"></a>关于函数的 return</h3><p>我们打断一下，先声明一个知识点，在函数中，return 不是必须存在的，但是如果我们没有为函数执行 return，函数会隐式存在一个 return undefined，一个栗子</p>
+<pre class="wx-pre"><p class=""><span class="">//不存在return，则隐式return undefined</span></p><p class=""><span class=""><span class="">function</span> <span class="">doSth1</span>() </span>{</p><p class="">  <span class="">let</span> name = <span class="">'这是普通函数'</span></p><p class="">}</p><p class=""><span class="">const</span> it1 = doSth1()</p><p class=""><br/></p><p class=""><span class="">console</span>.log(it1); <span class="">//=>undefined</span></p><p class=""><span class="">//存return</span></p><p class=""><span class=""><span class="">function</span> <span class="">doSth2</span>() </span>{</p><p class="">  <span class="">return</span> <span class="">'这是普通函数'</span></p><p class="">}</p><p class=""><span class="">const</span> it2 = doSth2()</p><p class=""><br/></p><p class=""><span class="">console</span>.log(it2); <span class="">//=>这是普通函数</span></p></pre>
+
+<p>普通函数是这样，Generator 也是如此</p>
+<h3 id="我们继续"><a href="#我们继续" class="headerlink" title="我们继续"></a>我们继续</h3><p>第一次调用 next，是对 Generator 生成器进行启动操作，Generator 生成器启动，执行，当遇到内部的 yield 时就会暂停 生成器中的 yield 有点像普通函数中的 return，但是在普通函数中当遇到 return，就意味着函数执行完毕，以此作为输出， 而 yield 不会完全停止函数的执行。</p>
+<p>可以这么理解，Generator 从一开始就是暂停的，通 it.next()打破其暂停状态， 当遇到 yield 时，会执行 yeild 后面的表达式，并返回执行之后的值，然后再次进入暂停状态，</p>
+<p>这么理解似乎更合理，</p>
+<p>调用第一个 it.next()，向 Generator 提出申请，我要的下一个值是什么？第一个 yield，对其进行回复，就是 yield ‘郭靖抓鸡’;然后 Generato 暂停了，等待下一次询问</p>
+<p>然后调用第二个 it.next()，向 Generator 提出申请，我要的下一个值是什么？第二个 yield，对其进行回复，就是 yield ‘郭靖杀鸡’;然后又停了</p>
+<p>…</p>
+<p>当调用第六个 it.next()时，Generator 已经没有 yield 了，怎么回答呢？它用 return 进行回答，终极回答</p>
+<p>如果没有 return 呢，这就是我们前面说的隐式的 return undefined</p>
+<p>仔细看代码，你会发现，next 和 yield 有一个对应关系，如果要时 Generator 执行完毕（done：true），next 的数量要比 yield 的数量多一个</p>
+<p>为什么会存在这种情况呢？</p>
+<p>因为第一个 it.next()是用来启动 Generator 生成器，启动后，遇到了第一个 yield，停下来了，</p>
+<p>第二个 it.next()是用来启动第一个 yield，以此类推，这样就导致他们“错位”了</p>
+<p>直到 Generator 的 return（显式或隐式）最后执行完毕</p>
+<p>我们再看一个栗子</p>
+<pre class="wx-pre"><p class=""><span class=""><span class="">function</span>* <span class="">doSth</span>(<span class="">params</span>) </span>{</p><p class="">  <span class="">return</span> params +(<span class="">yield</span> <span class="">"黄蓉"</span>)</p><p class="">}</p><p class=""><span class="">const</span> it = doSth(<span class="">'郭靖'</span>)</p><p class=""><span class="">console</span>.log(it.next())<span class="">//=>{value: "黄蓉", done: false}</span></p><p class=""><span class="">console</span>.log(it.next(<span class="">'吃饭'</span>))<span class="">//=>{value: "郭靖吃饭", done: true}</span></p></pre>
+
+<p>上的生成器可以这么写</p>
+<pre class="wx-pre"><p class=""><span class=""><span class="">function</span>* <span class="">doSth</span>(<span class="">params</span>) </span>{</p><p class="">  <span class="">let</span> a = params +(<span class="">yield</span> <span class="">"黄蓉"</span>)</p><p class="">  <span class="">return</span> a</p><p class="">}</p></pre>
+
+<p>next() 支持传递参数，但是不会在第一个 next()中传递参数，因为第一个 next()是用来启动 Generator 的</p>
+<p>第一个 next()执行，启动了 doSth(),遇到第一个 yield 停下来，yield 把“黄蓉”返给第一个 next()</p>
+<p>第二个 next()执行，启动了第一个 yield，并把“吃饭”传递给正在等待的 yield，然后继续执行，遇到了 return，执行完毕</p>
+
+      <div class="tags">
+          <a href="/tags/%E5%BC%82%E6%AD%A5%E3%80%81promise%E3%80%81async/" rel="tag"><i class="ic i-tag"></i> 异步、promise、async</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-10-18 17:36:42" itemprop="dateModified" datetime="2023-10-18T17:36:42+08:00">2023-10-18</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Besam 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Besam 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Besam 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Besam <i class="ic i-at"><em>@</em></i>Hello my friend
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2019/04/19/promise-async/" title="promise和async">http://example.com/2019/04/19/promise-async/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" itemprop="url" rel="prev" data-background-image=".&#x2F;images&#x2F;blue.jpg" title="异步回调">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> js基础</span>
+  <h3>异步回调</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2020/03/21/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" itemprop="url" rel="next" data-background-image=".&#x2F;images&#x2F;hope.jpg" title="performance性能指标收集">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>performance性能指标收集</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-promise"><span class="toc-number">1.</span> <span class="toc-text">什么是 promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E6%97%A9"><span class="toc-number">2.</span> <span class="toc-text">回调函数调用过早</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%92%8C%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97"><span class="toc-number">2.1.</span> <span class="toc-text">事件循环和任务队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E6%99%9A%E6%88%96%E4%B8%8D%E8%A2%AB%E8%B0%83%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">回调函数调用过晚或不被调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E6%99%9A"><span class="toc-number">3.1.</span> <span class="toc-text">回调函数调用过晚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E4%B8%8D%E8%A2%AB%E8%B0%83%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">回调函数不被调用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%AC%A1%E6%95%B0%E8%BF%87%E5%A4%9A%E6%88%96%E8%80%85%E8%BF%87%E5%B0%91"><span class="toc-number">4.</span> <span class="toc-text">回调函数调用次数过多或者过少</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%AC%A1%E6%95%B0%E8%BF%87%E5%A4%9A"><span class="toc-number">4.1.</span> <span class="toc-text">调用次数过多</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%AC%A1%E6%95%B0%E8%BF%87%E5%B0%91"><span class="toc-number">4.2.</span> <span class="toc-text">调用次数过少</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#promise-%E5%B1%80%E9%99%90"><span class="toc-number">5.</span> <span class="toc-text">promise 局限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E8%A2%AB%E5%90%83%E6%8E%89"><span class="toc-number">5.1.</span> <span class="toc-text">错误被吃掉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E5%80%BC"><span class="toc-number">5.2.</span> <span class="toc-text">单一值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E5%8F%96%E6%B6%88"><span class="toc-number">5.3.</span> <span class="toc-text">无法取消</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E5%BE%97%E7%9F%A5-pending-%E7%8A%B6%E6%80%81"><span class="toc-number">5.4.</span> <span class="toc-text">无法得知 pending 状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%AD%A3%E7%BB%8F%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">一个不正经的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84-return"><span class="toc-number">7.</span> <span class="toc-text">关于函数的 return</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E7%BB%A7%E7%BB%AD"><span class="toc-number">8.</span> <span class="toc-text">我们继续</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" rel="bookmark" title="js单线程与异步">js单线程与异步</a></li><li><a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" rel="bookmark" title="异步回调">异步回调</a></li><li class="active"><a href="/2019/04/19/promise-async/" rel="bookmark" title="promise和async">promise和async</a></li><li><a href="/2020/06/14/usestrict%E8%AF%A6%E8%A7%A3/" rel="bookmark" title="use strict详解">use strict详解</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Besam"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Besam</p>
+  <div class="description" itemprop="description">风雨的技术 & 日常记录</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">13</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">12</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jlc2FtLWp1YWp1YQ==" title="https:&#x2F;&#x2F;github.com&#x2F;Besam-juajua"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9iZXNhbQ==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;besam"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTQ1MjUxOTM2Ng==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;452519366"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjE2OTU3NDQzMjJAcXEuY29t" title="mailto:1695744322@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item facebook" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLzYxNTUwODI5MjI3NTg3" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;61550829227587"><i class="ic i-facebook"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item" data=/>
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item" data=/about/>
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+    
+  <li class="item" data=/notes/>
+    <a href="/notes/" rel="section"><i class="ic i-magic"></i>笔记</a>
+  </li>
+
+    
+  <li class="item" data=/archives/>
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+    
+  <li class="item" data=/categories/>
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+    
+  <li class="item" data=/tags/>
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2020/03/21/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="分类于 __note__编程语言">编程语言</a>
+</div>
+
+    <span><a href="/2023/09/14/strong-weak-types/" title="强类型语言和弱类型语言的区别">强类型语言和弱类型语言的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" title="js单线程与异步">js单线程与异步</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 性能优化">性能优化</a>
+</div>
+
+    <span><a href="/2023/06/11/data-center-refactor/" title="数据中心优化记录">数据中心优化记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2020/06/14/usestrict%E8%AF%A6%E8%A7%A3/" title="use strict详解">use strict详解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88/" title="分类于 开发方案">开发方案</a>
+</div>
+
+    <span><a href="/2020/09/08/icon/" title="项目icon方案">项目icon方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2020/03/21/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" title="performance性能指标收集">performance性能指标收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/19/promise-async/" title="promise和async">promise和async</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2020/03/23/%E7%9B%91%E6%8E%A7%E4%B8%8A%E6%8A%A5/" title="监控上报">监控上报</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E5%9F%BA%E7%A1%80%E5%BF%85%E7%9F%A5/" title="分类于 __note__基础必知">基础必知</a>
+</div>
+
+    <span><a href="/2020/06/10/Interpreted-compiled-language/" title="解释型和编译型的区别">解释型和编译型的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 性能优化">性能优化</a>
+</div>
+
+    <span><a href="/2023/06/12/canvas-performance/" title="关于canvas2d和svg的性能和对比">关于canvas2d和svg的性能和对比</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Besam @ Besam's space</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2019/04/19/promise-async/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "xyzlzx"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
