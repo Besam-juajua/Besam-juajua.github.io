@@ -1,0 +1,611 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hello my friend" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hello my friend" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hello my friend" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="算法" />
+
+
+<link rel="canonical" href="http://example.com/2023/09/14/algorithm/">
+
+
+
+  <title>
+几种常见的算法 - __note__算法基础 |
+Besam's space = Hello my friend = improve together</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">几种常见的算法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-14 09:26:38">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-14T09:26:38+08:00">2023-09-14</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Besam's space</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="./images/hope.jpg"></li>
+          <li class="item" data-background-image="./images/funny.jpg"></li>
+          <li class="item" data-background-image="./images/everything.jpg"></li>
+          <li class="item" data-background-image="./images/blue.jpg"></li>
+          <li class="item" data-background-image="./images/healthy.jpg"></li>
+          <li class="item" data-background-image="./images/nice.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/note-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 __note__算法基础"><span itemprop="name">算法基础</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/14/algorithm/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Besam">
+    <meta itemprop="description" content="improve together, 风雨的技术 & 日常记录">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hello my friend">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="递归算法"><a href="#递归算法" class="headerlink" title="递归算法"></a>递归算法</h2><h3 id="算法策略"><a href="#算法策略" class="headerlink" title="算法策略"></a>算法策略</h3><p>递归算法是一种直接或者间接调用自身函数或者方法的算法。递归算法的实质是把问题分解成规模缩小的同类问题的子问题，然后递归调用方法来表示问题的解。递归算法对解决一大类问题很有效，它可以使算法简洁和易于理解。</p>
+<p>优点：实现简单易上手</p>
+<p>缺点：递归算法对常用的算法如普通循环等，运行效率较低；并且在递归调用的过程当中系统为每一层的返回点、局部量等开辟了栈来存储，递归太深，容易发生栈溢出</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>递归算法一般用于解决三类问题：</p>
+<ol>
+<li>数据的定义是按递归定义的。（斐波那契数列）</li>
+<li>问题解法按递归算法实现。（回溯）</li>
+<li>数据的结构形式是按递归定义的。（树的遍历，图的搜索）</li>
+</ol>
+<p>递归的解题策略：</p>
+<p>第一步：明确你这个函数的输入输出，先不管函数里面的代码什么，而是要先明白，你这个函数的输入是什么，输出为何什么，功能是什么，要完成什么样的一件事。</p>
+<p>第二步：寻找递归结束条件，我们需要找出什么时候递归结束，之后直接把结果返回</p>
+<p>第三步：明确递归关系式，怎么通过各种递归调用来组合解决当前问题</p>
+<h3 id="使用递归算法求解的一些经典问题"><a href="#使用递归算法求解的一些经典问题" class="headerlink" title="使用递归算法求解的一些经典问题"></a>使用递归算法求解的一些经典问题</h3><p>斐波那契数列、汉诺塔问题、树的遍历及相关操作，以 DOM 为例，实现一个 document.getElementById 功能，由于DOM是一棵树，而树的定义本身就是用的递归定义，所以用递归的方法处理树，会非常地简单自然。</p>
+<h4 id="第一步：明确函数的输入输出"><a href="#第一步：明确函数的输入输出" class="headerlink" title="第一步：明确函数的输入输出"></a>第一步：明确函数的输入输出</h4><p>从 DOM 根节点一层层往下递归，判断当前节点的 id 是否是我们要寻找的 id&#x3D;’d-cal’</p>
+<p>输入：DOM 根节点 document ，我们要寻找的 id&#x3D;’d-cal’</p>
+<p>输出：返回满足 id&#x3D;’sisteran’ 的子结点</p>
+<p>function getElementById(node, id){}</p>
+<h4 id="第二步：寻找递归结束条件"><a href="#第二步：寻找递归结束条件" class="headerlink" title="第二步：寻找递归结束条件"></a>第二步：寻找递归结束条件</h4><p>从document开始往下找，对所有子结点递归查找他们的子结点，一层一层地往下查找：如果当前结点的 id 符合查找条件，则返回当前结点如果已经到了叶子结点了还没有找到，则返回 null</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getElementById(node, id)&#123;</span><br><span class="line">    // 当前结点不存在，已经到了叶子结点了还没有找到，返回 null</span><br><span class="line">    if(!node) return null</span><br><span class="line"></span><br><span class="line">    // 当前结点的 id 符合查找条件，返回当前结点</span><br><span class="line">    if(node.id === id) return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第三步：明确递归关系式"><a href="#第三步：明确递归关系式" class="headerlink" title="第三步：明确递归关系式"></a>第三步：明确递归关系式</h4><p>当前结点的 id 不符合查找条件，递归查找它的每一个子结点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function getElementById(node, id)&#123;</span><br><span class="line">    // 当前结点不存在，已经到了叶子结点了还没有找到，返回 null</span><br><span class="line">    if(!node) return null</span><br><span class="line"></span><br><span class="line">    // 当前结点的 id 符合查找条件，返回当前结点</span><br><span class="line">    if(node.id === id) return node</span><br><span class="line">    // 前结点的 id 不符合查找条件，继续查找它的每一个子结点</span><br><span class="line">    for(var i = 0; i &lt; node.childNodes.length; i++)&#123;</span><br><span class="line">	// 递归查找它的每一个子结点</span><br><span class="line">	    var found = getElementById(node.childNodes[i], id);</span><br><span class="line">	    if(found) return found;</span><br><span class="line">	&#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就这样，一个 document.getElementById 功能已经实现了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getElementById(node, id)&#123;</span><br><span class="line">    if(!node) return null;</span><br><span class="line">    if(node.id === id) return node;</span><br><span class="line">    for(var i = 0; i &lt; node.childNodes.length; i++)&#123;</span><br><span class="line">        var found = getElementById(node.childNodes[i], id);</span><br><span class="line">        if(found) return found;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br><span class="line">getElementById(document, &quot;d-cal&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h2><h3 id="算法策略-1"><a href="#算法策略-1" class="headerlink" title="算法策略"></a>算法策略</h3><p>在计算机科学中，分治算法是一个很重要的算法，快速排序、归并排序等都是基于分治策略进行实现的，所以，建议理解掌握它。分治，顾名思义，就是 分而治之 ，将一个复杂的问题，分成两个或多个相似的子问题，在把子问题分成更小的子问题，直到更小的子问题可以简单求解，求解子问题，则原问题的解则为阿子问题解的合并。</p>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><p>当出现满足以下条件的问题，可以尝试只用分治策略进行求解：原始问题可以分成多个相似的子问题子问题可以很简单的求解原始问题的解是子问题解的合并各个子问题是相互独立的，不包含相同的子问题分治的解题策略：</p>
+<ol>
+<li>第一步：分解，将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题</li>
+<li>解决，解决各个子问题</li>
+<li>合并，将各个子问题的解合并为原问题的解</li>
+</ol>
+<h3 id="使用分治法求解的一些经典问题"><a href="#使用分治法求解的一些经典问题" class="headerlink" title="使用分治法求解的一些经典问题"></a>使用分治法求解的一些经典问题</h3><p>二分查找、归并排序、快速排序、汉诺塔问题、React 时间分片。</p>
+<p>二分查找也称折半查找算法，它是一种简单易懂的快速查找算法。例如我随机写0-100之间的一个数字，让你猜我写的是什么？你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。</p>
+<h4 id="第一步：分解"><a href="#第一步：分解" class="headerlink" title="第一步：分解"></a>第一步：分解</h4><p>每次猜拳都把上一次的结果分出大的一组和小的一组，两组相互独立选择数组中的中间数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function binarySearch(items, item) &#123;</span><br><span class="line">    // low、mid、high将数组分成两组</span><br><span class="line">    var low = 0,</span><br><span class="line">    high = items.length - 1,</span><br><span class="line">    mid = Math.floor((low+high)/2),</span><br><span class="line">    elem = items[mid]</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第二步：解决子问题"><a href="#第二步：解决子问题" class="headerlink" title="第二步：解决子问题"></a>第二步：解决子问题</h4><p>查找数与中间数对比</p>
+<p>比中间数低，则去中间数左边的子数组中寻找；</p>
+<p>比中间数高，则去中间数右边的子数组中寻找；</p>
+<p>相等则返回查找成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">while(low &lt;= high) &#123;</span><br><span class="line">    if(elem &lt; item) &#123; // 比中间数高</span><br><span class="line">        low = mid + 1</span><br><span class="line">    &#125; else if(elem &gt; item) &#123; // 比中间数低</span><br><span class="line">        high = mid - 1</span><br><span class="line">    &#125; else &#123; // 相等</span><br><span class="line">        return mid</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第三步：合并"><a href="#第三步：合并" class="headerlink" title="第三步：合并"></a>第三步：合并</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function binarySearch(items, item) &#123;</span><br><span class="line">    var low = 0,</span><br><span class="line">        high = items.length - 1,</span><br><span class="line">        mid, elem;</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        mid = Math.floor((low+high)/2)</span><br><span class="line">        elem = items[mid]</span><br><span class="line">        if(elem &lt; item) &#123;</span><br><span class="line">            low = mid + 1</span><br><span class="line">        &#125; else if(elem &gt; item) &#123;</span><br><span class="line">            high = mid - 1</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return mid</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，二分法只能应用于数组有序的情况，如果数组无序，二分查找就不能起作用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function binarySearch(items, item) &#123;</span><br><span class="line">    // 快排</span><br><span class="line">    quickSort(items)</span><br><span class="line">    var low = 0,</span><br><span class="line">        high = items.length - 1,</span><br><span class="line">        mid, elem</span><br><span class="line">    while(low &lt;= high) &#123;</span><br><span class="line">        mid = Math.floor((low+high)/2)</span><br><span class="line">        elem = items[mid]</span><br><span class="line">        if(elem &lt; item) &#123;</span><br><span class="line">            low = mid + 1</span><br><span class="line">        &#125; else if(elem &gt; item) &#123;</span><br><span class="line">            high = mid - 1</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return mid</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1</span><br><span class="line">&#125;</span><br><span class="line">// 测试</span><br><span class="line">var arr = [2,3,1,4]</span><br><span class="line">binarySearch(arr, 3)</span><br><span class="line">// 2</span><br><span class="line">binarySearch(arr, 5)</span><br><span class="line">// -1</span><br></pre></td></tr></table></figure>
+
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><h3 id="算法策略-2"><a href="#算法策略-2" class="headerlink" title="算法策略"></a>算法策略</h3><p>贪心算法，故名思义，总是做出当前的最优选择，即期望通过局部的最优选择获得整体的最优选择。某种意义上说，贪心算法是很贪婪、很目光短浅的，它不从整体考虑，仅仅只关注当前的最大利益，所以说它做出的选择仅仅是某种意义上的局部最优，但是贪心算法在很多问题上还是能够拿到最优解或较优解，所以它的存在还是有意义的。</p>
+<h3 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h3><p>在日常生活中，我们使用到贪心算法的时候还是挺多的，例如：从100章面值不等的钞票中，抽出 10 张，怎样才能获得最多的价值？</p>
+<p>我们只需要每次都选择剩下的钞票中最大的面值，最后一定拿到的就是最优解，这就是使用的贪心算法，并且最后得到了整体最优解。但是，我们任然需要明确的是，期望通过局部的最优选择获得整体的最优选择，仅仅是期望而已，也可能最终得到的结果并不一定不能是整体最优解。</p>
+<p>例如：求取A到G最短路径：</p>
+<img data-src="/2023/09/14/algorithm/1694659646288.png" class="" width="1694659646288">
+
+<p>根据贪心算法总是选择当前最优选择，所以它首先选择的路径是 AB，然后 BE、EG，所得到的路径总长为 1 + 5 + 4 &#x3D; 10，然而这并不是最短路径，最短路径为 A-&gt;C-&gt;G : 2 + 2 &#x3D;4，所以说，贪心算法得到得并不一定是最优解。那么一般在什么时候可以尝试选择使用贪心算法喃？</p>
+<h4 id="当满足一下条件时，可以使用："><a href="#当满足一下条件时，可以使用：" class="headerlink" title="当满足一下条件时，可以使用："></a>当满足一下条件时，可以使用：</h4><ul>
+<li>原问题复杂度过高</li>
+<li>求全局最优解的数学模型难以建立或计算量过大</li>
+<li>没有太大必要一定要求出全局最优解，“比较优”就可以</li>
+</ul>
+<h4 id="如果使用贪心算法求最优解，可以按照以下-步骤求解-："><a href="#如果使用贪心算法求最优解，可以按照以下-步骤求解-：" class="headerlink" title="如果使用贪心算法求最优解，可以按照以下 步骤求解 ："></a>如果使用贪心算法求最优解，可以按照以下 步骤求解 ：</h4><p>首先，我们需要明确什么是最优解（期望），并把问题分成多个步骤，每一步都需要满足：</p>
+<ul>
+<li>可行性：每一步都满足问题的约束</li>
+<li>局部最优：每一步都做出一个局部最优的选择</li>
+<li>不可取消：选择一旦做出，在后面遇到任何情况都不可取消</li>
+</ul>
+<p>最后，叠加所有步骤的最优解，就是全局最优解</p>
+<h3 id="经典案例："><a href="#经典案例：" class="headerlink" title="经典案例："></a>经典案例：</h3><ul>
+<li>最小生成树算法</li>
+<li>单源最短路径的 Dijkstra 算法</li>
+<li>Huffman 压缩编码</li>
+<li>背包问题</li>
+<li>活动选择问题</li>
+</ul>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="算法策略-3"><a href="#算法策略-3" class="headerlink" title="算法策略"></a>算法策略</h3><p>动态规划也是将复杂问题分解成小问题求解的策略，与分治算法不同的是，分治算法要求各子问题是相互独立的，而动态规划各子问题是相互关联的。所以，动态规划适用于子问题重叠的情况，即不同的子问题具有公共的子子问题，在这种情况下，分治策略会做出很多不必要的工作，它会反复求解那些公共子子问题。而动态规划会对每个子子问题求解一次，然后保存在表格中，如果遇到一致的问题，从表格中获取既可，所以它无需求解每一个子子问题，避免了大量的不必要操作。</p>
+<h3 id="适用场景-3"><a href="#适用场景-3" class="headerlink" title="适用场景"></a>适用场景</h3><p>动态规划适用于求解最优解问题，比如，从面额不定的100个硬币中任意选取多个凑成10元，求怎样选取硬币才可以使最后选取的硬币数最少又刚好凑够了10元。这就是一个典型的动态规划问题。它可以分成一个个子问题（每次选取硬币），每个子问题又有公共的子子问题（选取硬币），子问题之间相互关联（已选取的硬币总金额不能超过10元），边界条件就是最终选取的硬币总金额为 10 元。</p>
+<p>针对上例，也许你也可以说，我们可以使用回溯算法，不断的去试探，但回溯算法是使用与求解广度的解（满足要求的解），如果是用回溯算法，我们需要尝试去找所有满足条件的解，然后找到最优解，时间复杂度为 O(2^n^) ，这性能是相当差的。大多数适用于动态规划的问题，都可以使用回溯算法，只是使用回溯算法的时间复杂度比较高而已。</p>
+<p>最后，总结一下，我们使用动态规划求解问题时，需要遵循以下几个重要步骤：</p>
+<ul>
+<li>定义子问题</li>
+<li>实现需要反复执行解决的子子问题部分</li>
+<li>识别并求解出边界条件</li>
+</ul>
+<h3 id="使用动态规划求解的一些经典问题"><a href="#使用动态规划求解的一些经典问题" class="headerlink" title="使用动态规划求解的一些经典问题"></a>使用动态规划求解的一些经典问题</h3><ul>
+<li>爬楼梯问题：假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</li>
+<li>背包问题：给出一些资源（有总量及价值），给一个背包（有总容量），往背包里装资源，目标是在背包不超过总容量的情况下，装入更多的价值</li>
+<li>硬币找零：给出面额不定的一定数量的零钱，以及需要找零的钱数，找出有多少种找零方案</li>
+<li>图的全源最短路径：一个图中包含 u、v 顶点，找出从顶点 u 到顶点 v 的最短路径</li>
+<li>最长公共子序列：找出一组序列的最长公共子序列（可由另一序列删除元素但不改变剩下元素的顺序实现）</li>
+</ul>
+<p>这里以动态规划经典问题爬楼梯问题为例，介绍求解动态规划问题的步骤。</p>
+<h4 id="第一步：定义子问题"><a href="#第一步：定义子问题" class="headerlink" title="第一步：定义子问题"></a>第一步：定义子问题</h4><p>如果用 dp[n] 表示第 n 级台阶的方案数，并且由题目知：最后一步可能迈 2 个台阶，也可迈 1 个台阶，即第 n 级台阶的方案数等于第 n-1 级台阶的方案数加上第 n-2 级台阶的方案数</p>
+<h4 id="第二步：实现需要反复执行解决的子子问题部分"><a href="#第二步：实现需要反复执行解决的子子问题部分" class="headerlink" title="第二步：实现需要反复执行解决的子子问题部分"></a>第二步：实现需要反复执行解决的子子问题部分</h4><p>dp[n] &#x3D; dp[n−1] + dp[n−2]</p>
+<h4 id="第三步：识别并求解出边界条件"><a href="#第三步：识别并求解出边界条件" class="headerlink" title="第三步：识别并求解出边界条件"></a>第三步：识别并求解出边界条件</h4><p>&#x2F;&#x2F; 第 0 级 1 种方案</p>
+<p>dp[0]&#x3D;1</p>
+<p>&#x2F;&#x2F; 第 1 级也是 1 种方案</p>
+<p>dp[1]&#x3D;1</p>
+<p>最后一步：把尾码翻译成代码，处理一些边界情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let climbStairs = function(n) &#123;</span><br><span class="line">    let dp = [1, 1]</span><br><span class="line">    for(let i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i] = dp[i - 1] + dp[i - 2]</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[n]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>复杂度分析：时间复杂度 O(n)、空间复杂度 O(n)</p>
+<p>如下优化空间复杂度后，空间复杂度为：O(1)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let climbStairs = function(n) &#123;</span><br><span class="line">    let res = 1, n1 = 1, n2 = 1</span><br><span class="line">    for(let i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        res = n1 + n2</span><br><span class="line">        n1 = n2</span><br><span class="line">        n2 = res</span><br><span class="line">    &#125;</span><br><span class="line">    return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      <div class="tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 算法</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-09-14 15:28:33" itemprop="dateModified" datetime="2023-09-14T15:28:33+08:00">2023-09-14</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Besam 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Besam 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Besam 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Besam <i class="ic i-at"><em>@</em></i>Hello my friend
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/14/algorithm/" title="几种常见的算法">http://example.com/2023/09/14/algorithm/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/09/13/Interpreted-compiled-language/" itemprop="url" rel="prev" data-background-image=".&#x2F;images&#x2F;sky.jpg" title="解释型和编译型的区别">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> __note__基础必知</span>
+  <h3>解释型和编译型的区别</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/09/14/strong-weak-types/" itemprop="url" rel="next" data-background-image=".&#x2F;images&#x2F;hope.jpg" title="强类型语言和弱类型语言的区别">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> __note__编程语言</span>
+  <h3>强类型语言和弱类型语言的区别</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">递归算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.</span> <span class="toc-text">算法策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">使用递归算法求解的一些经典问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%98%8E%E7%A1%AE%E5%87%BD%E6%95%B0%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一步：明确函数的输入输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AF%BB%E6%89%BE%E9%80%92%E5%BD%92%E7%BB%93%E6%9D%9F%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二步：寻找递归结束条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%98%8E%E7%A1%AE%E9%80%92%E5%BD%92%E5%85%B3%E7%B3%BB%E5%BC%8F"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三步：明确递归关系式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">分治算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AD%96%E7%95%A5-1"><span class="toc-number">2.1.</span> <span class="toc-text">算法策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="toc-number">2.2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.</span> <span class="toc-text">使用分治法求解的一些经典问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%86%E8%A7%A3"><span class="toc-number">2.3.1.</span> <span class="toc-text">第一步：分解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%A7%A3%E5%86%B3%E5%AD%90%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.2.</span> <span class="toc-text">第二步：解决子问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%90%88%E5%B9%B6"><span class="toc-number">2.3.3.</span> <span class="toc-text">第三步：合并</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">贪心算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AD%96%E7%95%A5-2"><span class="toc-number">3.1.</span> <span class="toc-text">算法策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-number">3.2.</span> <span class="toc-text">适用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%93%E6%BB%A1%E8%B6%B3%E4%B8%80%E4%B8%8B%E6%9D%A1%E4%BB%B6%E6%97%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">3.2.1.</span> <span class="toc-text">当满足一下条件时，可以使用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%B1%82%E6%9C%80%E4%BC%98%E8%A7%A3%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8C%89%E7%85%A7%E4%BB%A5%E4%B8%8B-%E6%AD%A5%E9%AA%A4%E6%B1%82%E8%A7%A3-%EF%BC%9A"><span class="toc-number">3.2.2.</span> <span class="toc-text">如果使用贪心算法求最优解，可以按照以下 步骤求解 ：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">经典案例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">4.</span> <span class="toc-text">动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AD%96%E7%95%A5-3"><span class="toc-number">4.1.</span> <span class="toc-text">算法策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF-3"><span class="toc-number">4.2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">使用动态规划求解的一些经典问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%9A%E4%B9%89%E5%AD%90%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.1.</span> <span class="toc-text">第一步：定义子问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%9E%E7%8E%B0%E9%9C%80%E8%A6%81%E5%8F%8D%E5%A4%8D%E6%89%A7%E8%A1%8C%E8%A7%A3%E5%86%B3%E7%9A%84%E5%AD%90%E5%AD%90%E9%97%AE%E9%A2%98%E9%83%A8%E5%88%86"><span class="toc-number">4.3.2.</span> <span class="toc-text">第二步：实现需要反复执行解决的子子问题部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%AF%86%E5%88%AB%E5%B9%B6%E6%B1%82%E8%A7%A3%E5%87%BA%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="toc-number">4.3.3.</span> <span class="toc-text">第三步：识别并求解出边界条件</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/09/14/algorithm/" rel="bookmark" title="几种常见的算法">几种常见的算法</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Besam"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Besam</p>
+  <div class="description" itemprop="description">风雨的技术 & 日常记录</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">13</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">12</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jlc2FtLWp1YWp1YQ==" title="https:&#x2F;&#x2F;github.com&#x2F;Besam-juajua"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9iZXNhbQ==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;besam"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTQ1MjUxOTM2Ng==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;452519366"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjE2OTU3NDQzMjJAcXEuY29t" title="mailto:1695744322@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item facebook" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLzYxNTUwODI5MjI3NTg3" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;61550829227587"><i class="ic i-facebook"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item" data=/>
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item" data=/about/>
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+    
+  <li class="item" data=/notes/>
+    <a href="/notes/" rel="section"><i class="ic i-magic"></i>笔记</a>
+  </li>
+
+    
+  <li class="item" data=/archives/>
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+    
+  <li class="item" data=/categories/>
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+    
+  <li class="item" data=/tags/>
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/09/13/Interpreted-compiled-language/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/09/14/strong-weak-types/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 性能优化">性能优化</a>
+</div>
+
+    <span><a href="/2023/09/11/data-center-refactor/" title="数据中心优化记录">数据中心优化记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E5%9F%BA%E7%A1%80%E5%BF%85%E7%9F%A5/" title="分类于 __note__基础必知">基础必知</a>
+</div>
+
+    <span><a href="/2023/09/13/Interpreted-compiled-language/" title="解释型和编译型的区别">解释型和编译型的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88/" title="分类于 开发方案">开发方案</a>
+</div>
+
+    <span><a href="/2023/09/08/icon/" title="项目icon方案">项目icon方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/" title="错误收集">错误收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2021/09/11/promise-async/" title="promise和async">promise和async</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 __note__算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/09/14/algorithm/" title="几种常见的算法">几种常见的算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" title="performance性能指标收集">performance性能指标收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" title="js单线程与异步">js单线程与异步</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" title="异步回调">异步回调</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="分类于 __note__编程语言">编程语言</a>
+</div>
+
+    <span><a href="/2023/09/14/strong-weak-types/" title="强类型语言和弱类型语言的区别">强类型语言和弱类型语言的区别</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Besam @ Besam's space</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/09/14/algorithm/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "xyzlzx"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

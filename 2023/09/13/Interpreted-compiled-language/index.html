@@ -1,0 +1,561 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hello my friend" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hello my friend" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hello my friend" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="编程语言" />
+
+
+<link rel="canonical" href="http://example.com/2023/09/13/Interpreted-compiled-language/">
+
+
+
+  <title>
+解释型和编译型的区别 - __note__基础必知 |
+Besam's space = Hello my friend = improve together</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">解释型和编译型的区别
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-13 09:30:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-13T09:30:00+08:00">2023-09-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Besam's space</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="./images/funny.jpg"></li>
+          <li class="item" data-background-image="./images/hope.jpg"></li>
+          <li class="item" data-background-image="./images/nice.jpg"></li>
+          <li class="item" data-background-image="./images/everything.jpg"></li>
+          <li class="item" data-background-image="./images/blue.jpg"></li>
+          <li class="item" data-background-image="./images/sky.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/note-%E5%9F%BA%E7%A1%80%E5%BF%85%E7%9F%A5/" itemprop="item" rel="index" title="分类于 __note__基础必知"><span itemprop="name">基础必知</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/13/Interpreted-compiled-language/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Besam">
+    <meta itemprop="description" content="improve together, 风雨的技术 & 日常记录">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hello my friend">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <blockquote>
+<p>我们编写的源代码是人类语言，我们自己能够轻松理解；但是对于计算机硬件（CPU），源代码就是天书，根本无法执行，计算机只能识别某些特定的二进制指令，在程序真正运行之前必须将源代码转换成二进制指令。</p>
+<p>所谓的二进制指令，也就是机器码，是 CPU 能够识别的硬件层面的“代码”，简陋的硬件（比如古老的单片机）只能使用几十个指令，强大的硬件（PC 和智能手机）能使用成百上千个指令。</p>
+</blockquote>
+<p>然而，究竟在什么时候将源代码转换成二进制指令呢？不同的编程语言有不同的规定：</p>
+<ul>
+<li>有的编程语言要求必须提前将所有源代码一次性转换成二进制指令，也就是生成一个可执行程序（Windows 下的 .exe），比如C语言、C++、Golang、Pascal（Delphi）、汇编等，这种编程语言称为编译型语言，使用的转换工具称为编译器。</li>
+<li>有的编程语言可以一边执行一边转换，需要哪些源代码就转换哪些源代码，不会生成可执行程序，比如 Python、JavaScript、PHP、Shell、MATLAB 等，这种编程语言称为解释型语言，使用的转换工具称为解释器</li>
+</ul>
+<p>简单理解， 编译器就是一个“翻译工具” ，类似于将中文翻译成英文、将英文翻译成俄文。但是，翻译源代码是一个复杂的过程，大致包括词法分析、语法分析、语义分析、性能优化、生成可执行文件等五个步骤，期间涉及到复杂的算法和硬件架构。解释器与此类似。</p>
+<p>Java 和 C# 是一种比较奇葩的存在，它们是半编译半解释型的语言，源代码需要先转换成一种中间文件（字节码文件），然后再将中间文件拿到虚拟机中执行。Java 引领了这种风潮，它的初衷是在跨平台的同时兼顾执行效率；C# 是后来的跟随者，但是 C# 一直止步于Windows 平台，在其它平台鲜有作为。</p>
+<img data-src="/2023/09/13/Interpreted-compiled-language/1694572678874.png" class="" title="img">
+
+
+<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2><p>对于编译型语言，开发完成以后需要将所有的源代码都转换成可执行程序，比如 Windows下的 .exe 文件，可执行程序里面包含的就是机器码。只要我们拥有可执行程序，就可以随时运行，不用再重新编译了，也就是“一次编译，无限次运行”。在运行的时候，我们只需要编译生成的可执行程序，不再需要源代码和编译器了，所以说编译型语言可以脱离开发环境运行。</p>
+<p>编译型语言一般是不能跨平台的，也就是不能在不同的操作系统之间随意切换。编译型语言不能跨平台表现在两个方面：</p>
+<h3 id="可执行程序不能跨平台"><a href="#可执行程序不能跨平台" class="headerlink" title="可执行程序不能跨平台"></a>可执行程序不能跨平台</h3><p>可执行程序不能跨平台很容易理解，因为不同操作系统对可执行文件的内部结构有着截然不同的要求，彼此之间也不能兼容。不能跨平台是天经地义，能跨平台反而才是奇葩。</p>
+<p>比如，不能将 Windows 下的可执行程序拿到 Linux 下使用，也不能将 Linux 下的可执行程序拿到 Mac OS 下使用（虽然它们都是类 Unix 系统）。</p>
+<p>另外，相同操作系统的不同版本之间也不一定兼容，比如不能将 x64 程序（Windows 64位程序）拿到 x86 平台（Windows 32 位平台）下运行。但是反之一般可行，因为 64 位Windows 对 32 位程序作了很好的兼容性处理。</p>
+<h3 id="源代码不能跨平台"><a href="#源代码不能跨平台" class="headerlink" title="源代码不能跨平台"></a>源代码不能跨平台</h3><p>不同平台支持的函数、类型、变量等都可能不同，基于某个平台编写的源代码一般不能拿到另一个平台下编译。我们以C语言为例来说明。</p>
+<ul>
+<li>在C语言中要想让程序暂停可以使用“睡眠”函数，在 Windows 平台下该函数是Sleep()，在 Linux 平台下该函数是 sleep()，首字母大小写不同。其次，Sleep() 的参数是毫秒，sleep() 的参数是秒，单位也不一样。这两个原因导致使用暂停功能的C语言程序不能跨平台，除非在代码层面做出兼容性处理，非常麻烦。</li>
+<li>虽然不同平台的C语言都支持 long 类型，但是不同平台的 long 的长度却不同，例如，Windows 64 位平台下的 long 占用 4 个字节，Linux 64 位平台下的 long 占用 8 个字节。我们在 Linux 64 位平台下编写代码时，将 0x2f1e4ad23 赋值给 long 类型的变量是完全没有问题的，但是这样的赋值在 Windows 平台下就会导致数值溢出，让程序产生错误的运行结果。让人苦恼的，这样的错误一般不容易察觉，因为编译器不会报错，我们也记不住不同类型的取值范围。</li>
+</ul>
+<h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>码转换成机器码，用不到的不进行任何处理。每次执行程序时可能使用不同的功能，这个时候需要转换的源代码也不一样。因为每次执行程序都需要重新转换源代码，所以解释型语言的执行效率天生就低于编译型语言，甚至存在数量级的差距。计算机的一些底层功能，或者关键算法，一般都使用C&#x2F;C++ 实现，只有在应用层面（比如网站开发、批处理、小工具等）才会使用解释型语言。</p>
+<p>在运行解释型语言的时候，我们始终都需要源代码和解释器，所以说它无法脱离开发环境。当我们说“下载一个程序（软件）”时，不同类型的语言有不同的含义：</p>
+<ul>
+<li>对于编译型语言，我们下载到的是可执行文件，源代码被作者保留，所以编译型语言的程序一般是闭源的。</li>
+<li>对于解释型语言，我们下载到的是所有的源代码，因为作者不给源代码就没法运行，所以解释型语言的程序一般是开源的。</li>
+</ul>
+<p>相比于编译型语言，解释型语言几乎都能跨平台，“一次编写，到处运行”是真是存在的，而且比比皆是。那么，为什么解释型语言就能快平台呢？</p>
+<p>这一切都要归功于解释器！我们所说的跨平台，是指源代码跨平台，而不是解释器跨平台 。解释器用来将源代码转换成机器码，它就是一个可执行程序，是绝对不能跨平台的。</p>
+<p>你看， 解释型语言之所以能够跨平台，是因为有了解释器这个中间层。在不同的平台下，解释器会将相同的源代码转换成不同的机器码 ，解释器帮助我们屏蔽了不同平台之间的差异。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编译型语言</td>
+<td>通过专门的编译器，将所有源代码一次性转换成特定平台（Windows、Linux 等）执行的机器码（以可执行文件的形式存在）</td>
+<td>编译一次后，脱离了编译器也可以运行，并且运行效率高</td>
+<td>可移植性差，不够灵活</td>
+</tr>
+<tr>
+<td>解释型语言</td>
+<td>由专门的解释器，根据需要将部分源代码临时转换成特定平台的机器码</td>
+<td>跨平台性好，通过不同的解释器，将相同的源代码解释成不同平台下的机器码</td>
+<td>一边执行一边转换，效率很低</td>
+</tr>
+</tbody></table>
+
+      <div class="tags">
+          <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" rel="tag"><i class="ic i-tag"></i> 编程语言</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-09-14 13:49:17" itemprop="dateModified" datetime="2023-09-14T13:49:17+08:00">2023-09-14</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Besam 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Besam 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Besam 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Besam <i class="ic i-at"><em>@</em></i>Hello my friend
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/13/Interpreted-compiled-language/" title="解释型和编译型的区别">http://example.com/2023/09/13/Interpreted-compiled-language/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/09/11/data-center-refactor/" itemprop="url" rel="prev" data-background-image=".&#x2F;images&#x2F;funny.jpg" title="数据中心优化记录">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 性能优化</span>
+  <h3>数据中心优化记录</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/09/14/algorithm/" itemprop="url" rel="next" data-background-image=".&#x2F;images&#x2F;healthy.jpg" title="几种常见的算法">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> __note__算法基础</span>
+  <h3>几种常见的算法</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">编译型语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E4%B8%8D%E8%83%BD%E8%B7%A8%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.1.</span> <span class="toc-text">可执行程序不能跨平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8D%E8%83%BD%E8%B7%A8%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.2.</span> <span class="toc-text">源代码不能跨平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">解释型语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/09/13/Interpreted-compiled-language/" rel="bookmark" title="解释型和编译型的区别">解释型和编译型的区别</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Besam"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Besam</p>
+  <div class="description" itemprop="description">风雨的技术 & 日常记录</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">13</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">12</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jlc2FtLWp1YWp1YQ==" title="https:&#x2F;&#x2F;github.com&#x2F;Besam-juajua"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9iZXNhbQ==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;besam"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTQ1MjUxOTM2Ng==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;452519366"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjE2OTU3NDQzMjJAcXEuY29t" title="mailto:1695744322@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item facebook" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLzYxNTUwODI5MjI3NTg3" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;61550829227587"><i class="ic i-facebook"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item" data=/>
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item" data=/about/>
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+    
+  <li class="item" data=/notes/>
+    <a href="/notes/" rel="section"><i class="ic i-magic"></i>笔记</a>
+  </li>
+
+    
+  <li class="item" data=/archives/>
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+    
+  <li class="item" data=/categories/>
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+    
+  <li class="item" data=/tags/>
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/09/11/data-center-refactor/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/09/14/algorithm/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" title="js单线程与异步">js单线程与异步</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 性能优化">性能优化</a>
+</div>
+
+    <span><a href="/2023/09/11/canvas-performance/" title="关于canvas2d和svg的性能和对比">关于canvas2d和svg的性能和对比</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/" title="错误收集">错误收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 性能优化">性能优化</a>
+</div>
+
+    <span><a href="/2023/09/11/data-center-refactor/" title="数据中心优化记录">数据中心优化记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" title="异步回调">异步回调</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" title="performance性能指标收集">performance性能指标收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2021/09/11/promise-async/" title="promise和async">promise和async</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E5%9F%BA%E7%A1%80%E5%BF%85%E7%9F%A5/" title="分类于 __note__基础必知">基础必知</a>
+</div>
+
+    <span><a href="/2023/09/13/Interpreted-compiled-language/" title="解释型和编译型的区别">解释型和编译型的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88/" title="分类于 开发方案">开发方案</a>
+</div>
+
+    <span><a href="/2023/09/08/icon/" title="项目icon方案">项目icon方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 __note__算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/09/14/algorithm/" title="几种常见的算法">几种常见的算法</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Besam @ Besam's space</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/09/13/Interpreted-compiled-language/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "xyzlzx"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

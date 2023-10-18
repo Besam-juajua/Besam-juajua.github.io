@@ -1,0 +1,546 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hello my friend" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hello my friend" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hello my friend" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="异步,单线程" />
+
+
+<link rel="canonical" href="http://example.com/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/">
+
+
+
+  <title>
+js单线程与异步 - js基础 |
+Besam's space = Hello my friend = improve together</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">js单线程与异步
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2019-04-05 19:41:15">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2019-04-05T19:41:15+08:00">2019-04-05</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Besam's space</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="./images/blue.jpg"></li>
+          <li class="item" data-background-image="./images/funny.jpg"></li>
+          <li class="item" data-background-image="./images/sky.jpg"></li>
+          <li class="item" data-background-image="./images/healthy.jpg"></li>
+          <li class="item" data-background-image="./images/hope.jpg"></li>
+          <li class="item" data-background-image="./images/everything.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/js%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 js基础"><span itemprop="name">js基础</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Besam">
+    <meta itemprop="description" content="improve together, 风雨的技术 & 日常记录">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hello my friend">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h3 id="什么是js异步？"><a href="#什么是js异步？" class="headerlink" title="什么是js异步？"></a>什么是js异步？</h3><p>我们知道JavaScript是单线程的，这与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？<br>所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。<br>这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。<br>ajax的同步请求就会导致浏览器产生假死，因为它会锁定浏览器的UI（按钮，菜单，滚动条等），并阻塞所有用户的交互，jquery中的ajax有这样一个同步请求的功能，一定要慎用，尤其是在请求的数据量很大的时候，要避免使用同步请求。<br>举几个栗子感受一下异步<br>后台接口使用easy-mock，官方地址：<span class="exturl" data-url="aHR0cHM6Ly9lYXN5LW1vY2suY29tLw==">https://easy-mock.com/</span><br>ajax使用axios,基本代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>javascript异步<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> myData = <span class="literal">null</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">//ajax请求</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        axios.<span class="title function_">get</span>(<span class="string">&#x27;https://easy-mock.com/mock/5b0525349ae34e7a89352191/example/mock&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">          .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;ajax返回成功&quot;</span>);<span class="comment">// handle success</span></span></span><br><span class="line"><span class="language-javascript">            myData = data.<span class="property">data</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(myData);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          &#125;)</span></span><br><span class="line"><span class="language-javascript">          .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// console.log(error); // handle error</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;ajax返回失败&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">          &#125;)</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们通过添加一些js来看下效果,</p>
+<h4 id="异步-定时器"><a href="#异步-定时器" class="headerlink" title="异步-定时器"></a>异步-定时器</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myData);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;定时器&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myData);</span><br></pre></td></tr></table></figure>
+
+<p>输出,应该没什么悬念</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//null</span><br><span class="line">//null</span><br><span class="line">//定时器</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序：<br>先执行第一个 console.log(myData);<br>然后遇到了定时器，将定时器挂起（就是暂停了这个定时器）<br>继续执行第二个 console.log(myData);<br>没有可以执行的js代码，回头把挂起的任务继续执行下去<br>继续看下一个栗子</p>
+<h4 id="异步-ajax"><a href="#异步-ajax" class="headerlink" title="异步-ajax"></a>异步-ajax</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(myData);</span><br><span class="line">ajax()</span><br><span class="line">console.log(myData);</span><br></pre></td></tr></table></figure>
+
+<p>看下输出，依然没有悬念</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//null</span><br><span class="line">//null</span><br><span class="line">//ajax返回成功</span><br><span class="line">//&#123;success: true, data: &#123;…&#125;&#125;(这是接口返回的数据，我们不必关心返回的具体内容，只要知道返回了就好)</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序和上面的定时器基本类似，不在此赘述。<br>将两个栗子合并，我们看下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(myData);</span><br><span class="line">ajax()</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">   console.log(&#x27;定时器&#x27;);</span><br><span class="line">&#125;, 2000);</span><br><span class="line">console.log(myData);</span><br></pre></td></tr></table></figure>
+
+<p>输出，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//null</span><br><span class="line">//null</span><br><span class="line">//ajax返回成功</span><br><span class="line">//&#123;success: true, data: &#123;…&#125;&#125;</span><br><span class="line">//定时器</span><br></pre></td></tr></table></figure>
+
+<p>发现问题了吗？两个异步函数相遇了，先执行谁？谁跑的快就先执行谁？<br>也可以这么说，其实这引发了另外一个知识点，</p>
+<h3 id="任务队列和事件循环"><a href="#任务队列和事件循环" class="headerlink" title="任务队列和事件循环"></a>任务队列和事件循环</h3><p>两个  console.log(myData);是同步执行的，他们都在js的主线程上执行，<br>在主线程之外还存在一个任务队列，任务队列中存放着需要异步执行的内容<br>当主线程运行完毕之后，就会去执行任务队列中的任务（不断的重复扫描）直到任务队列清空</p>
+<p>观察这段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(1);</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">	console.log(2);</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3);</span><br></pre></td></tr></table></figure>
+
+<p>输出：1，3，2，这没什么可解释的<br>再看一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function()&#123;console.log(1);&#125;, 0);</span><br><span class="line">console.log(2);</span><br></pre></td></tr></table></figure>
+
+<p>输出：2，1，为什么会这样？<br>console.log(2);在主线程中，先执行，<br>setTimeout(function(){console.log(1);}, 0);放在了任务队列中，<br>只有在主线程执行完了才会去执行任务列队中的内容</p>
+<h4 id="为什么主线程的任务执行完了后需要不断的扫描任务列队中的内容呢？"><a href="#为什么主线程的任务执行完了后需要不断的扫描任务列队中的内容呢？" class="headerlink" title="为什么主线程的任务执行完了后需要不断的扫描任务列队中的内容呢？"></a>为什么主线程的任务执行完了后需要不断的扫描任务列队中的内容呢？</h4><p>看这段代码，有助于你的理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">console.log(myData);</span><br><span class="line">ajax()</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">	console.log(&#x27;定时器&#x27;);</span><br><span class="line">&#125;, 2000);</span><br><span class="line">console.log(myData);</span><br><span class="line">const btn = document.querySelector(&#x27;button&#x27;)</span><br><span class="line">btn.onclick = () =&gt; &#123;</span><br><span class="line">        console.log(&quot;点击了&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们为button按钮添加了点击事件，在浏览器刷新的同时不停地对按钮进行点击操作（当然是手动点击）<br>看下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//null</span><br><span class="line">//null</span><br><span class="line">//(10次输出)点击了</span><br><span class="line">//ajax返回成功</span><br><span class="line">//&#123;success: true, data: &#123;…&#125;&#125;</span><br><span class="line">//定时器</span><br><span class="line">//点击了</span><br></pre></td></tr></table></figure>
+
+<p>这样是不是可以理解为什么主线程要去循环扫描任务列队了？<br>事件循环的每一轮称为一个tick（有没有联想到vue中的nextTick？）<br>当产生用户交互（鼠标点击事件，页面滚动事件，窗口大小变化事件等等），ajax，定时器，计时器等，会向事件循环中的任务队列添加事件，然后等待执行，</p>
+<h3 id="前端异步有哪些场景？"><a href="#前端异步有哪些场景？" class="headerlink" title="前端异步有哪些场景？"></a>前端异步有哪些场景？</h3><ol>
+<li>定时任务：setTimeout,setInverval</li>
+<li>网络请求：ajax请求，img图片的动态加载</li>
+<li>事件绑定或者叫DOM事件，比如一个点击事件，我不知道它什么时候点，但是在它点击之前，我该干什么还是干什么。用addEventListener注册一个类型的事件的时候，浏览器会有一个单独的模块去接收这个东西，当事件被触发的时候，浏览器的某个模块，会把相应的函数扔到任务队列中，如果现在任务列队中是空的，就会直接执行这个函数。</li>
+<li>Promise、Async</li>
+</ol>
+<h3 id="什么时候需要异步："><a href="#什么时候需要异步：" class="headerlink" title="什么时候需要异步："></a>什么时候需要异步：</h3><ol>
+<li>在可能发生等待的情况</li>
+<li>等待过程中不能像alert一样阻塞程序的时候</li>
+<li>因此，所有的“等待的情况”都需要异步</li>
+</ol>
+<p>一句话总结就是需要等待但是又不能阻塞程序的时候需要使用异步</p>
+<h3 id="异步和并行"><a href="#异步和并行" class="headerlink" title="异步和并行"></a>异步和并行</h3><p>千万不要把异步和并行搞混了，<br>异步：单线程的,主线程的任务以同步的方式执行完毕，才会去依次执行任务列队中的异步任务<br>并行：两个或多个事件链随时间发展交替执行，以至于从更高的层次来看，就像是同时在运行（尽管在任意时刻只处理一个事件）</p>
+
+      <div class="tags">
+          <a href="/tags/%E5%BC%82%E6%AD%A5/" rel="tag"><i class="ic i-tag"></i> 异步</a>
+          <a href="/tags/%E5%8D%95%E7%BA%BF%E7%A8%8B/" rel="tag"><i class="ic i-tag"></i> 单线程</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-09-14 16:05:23" itemprop="dateModified" datetime="2023-09-14T16:05:23+08:00">2023-09-14</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Besam 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Besam 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Besam 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Besam <i class="ic i-at"><em>@</em></i>Hello my friend
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" title="js单线程与异步">http://example.com/2019/04/05/js单线程与异步/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" itemprop="url" rel="next" data-background-image=".&#x2F;images&#x2F;healthy.jpg" title="异步回调">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> js基础</span>
+  <h3>异步回调</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFjs%E5%BC%82%E6%AD%A5%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是js异步？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">异步-定时器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5-ajax"><span class="toc-number">1.2.</span> <span class="toc-text">异步-ajax</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">任务队列和事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%BB%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E5%AE%8C%E4%BA%86%E5%90%8E%E9%9C%80%E8%A6%81%E4%B8%8D%E6%96%AD%E7%9A%84%E6%89%AB%E6%8F%8F%E4%BB%BB%E5%8A%A1%E5%88%97%E9%98%9F%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E5%91%A2%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">为什么主线程的任务执行完了后需要不断的扫描任务列队中的内容呢？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%BC%82%E6%AD%A5%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">前端异步有哪些场景？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E5%BC%82%E6%AD%A5%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">什么时候需要异步：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="toc-number">5.</span> <span class="toc-text">异步和并行</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" rel="bookmark" title="js单线程与异步">js单线程与异步</a></li><li><a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" rel="bookmark" title="异步回调">异步回调</a></li><li><a href="/2021/09/11/promise-async/" rel="bookmark" title="promise和async">promise和async</a></li><li><a href="/2023/09/14/usestrict%E8%AF%A6%E8%A7%A3/" rel="bookmark" title="use strict详解">use strict详解</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Besam"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Besam</p>
+  <div class="description" itemprop="description">风雨的技术 & 日常记录</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">13</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">12</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Jlc2FtLWp1YWp1YQ==" title="https:&#x2F;&#x2F;github.com&#x2F;Besam-juajua"><i class="ic i-github"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9iZXNhbQ==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;besam"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTQ1MjUxOTM2Ng==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;452519366"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjE2OTU3NDQzMjJAcXEuY29t" title="mailto:1695744322@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item facebook" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLzYxNTUwODI5MjI3NTg3" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;61550829227587"><i class="ic i-facebook"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item" data=/>
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item" data=/about/>
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+    
+  <li class="item" data=/notes/>
+    <a href="/notes/" rel="section"><i class="ic i-magic"></i>笔记</a>
+  </li>
+
+    
+  <li class="item" data=/archives/>
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+    
+  <li class="item" data=/categories/>
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+    
+  <li class="item" data=/tags/>
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E5%9F%BA%E7%A1%80%E5%BF%85%E7%9F%A5/" title="分类于 __note__基础必知">基础必知</a>
+</div>
+
+    <span><a href="/2023/09/13/Interpreted-compiled-language/" title="解释型和编译型的区别">解释型和编译型的区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/note-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="分类于 __note__算法基础">算法基础</a>
+</div>
+
+    <span><a href="/2023/09/14/algorithm/" title="几种常见的算法">几种常见的算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%96%B9%E6%A1%88/" title="分类于 开发方案">开发方案</a>
+</div>
+
+    <span><a href="/2023/09/08/icon/" title="项目icon方案">项目icon方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/05/js%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5/" title="js单线程与异步">js单线程与异步</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2019/04/06/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/" title="异步回调">异步回调</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2023/09/14/usestrict%E8%AF%A6%E8%A7%A3/" title="use strict详解">use strict详解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/" title="错误收集">错误收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/%E7%9B%91%E6%8E%A7%E4%B8%8A%E6%8A%A5/" title="监控上报">监控上报</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/09/20/performance%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/" title="performance性能指标收集">performance性能指标收集</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/js%E5%9F%BA%E7%A1%80/" title="分类于 js基础">js基础</a>
+</div>
+
+    <span><a href="/2021/09/11/promise-async/" title="promise和async">promise和async</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Besam @ Besam's space</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2019/04/05/js单线程与异步/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "xyzlzx"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
